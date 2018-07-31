@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-
   firebase: {
     apiKey: 'AIzaSyAXzHzF_UhXqpdE1oV1qTrZsUekwqXJ_E8',
     authDomain: 'angulargrocery-cf3d9.firebaseapp.com',

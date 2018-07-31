@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import { UserService } from './__services/user.service';
+=======
+>>>>>>> adding route protecting for admin links (+8 squashed commits)
 import { AuthService } from './__services/auth.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'app';
+<<<<<<< HEAD
   constructor(
     private userService: UserService,
     private auth: AuthService,
@@ -23,6 +27,17 @@ export class AppComponent {
         if (!returnUrl) return;
         localStorage.removeItem('returnUrl');
       }
+=======
+  constructor(private auth: AuthService, private router: Router) {
+    auth.user$.subscribe(user => {
+      if (!user) return;
+
+      let returnUrl = localStorage.getItem('returnUrl');
+      if (!returnUrl) return;
+
+      localStorage.removeItem('returnUrl');
+      router.navigateByUrl(returnUrl);
+>>>>>>> adding route protecting for admin links (+8 squashed commits)
     });
   }
 }
