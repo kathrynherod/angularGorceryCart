@@ -1,8 +1,9 @@
-import { environment } from './../environments/environment.prod';
+import { environment } from '../environments/environment';
+
 //Modules//
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, CanActivate } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,7 +13,6 @@ import { MatInputModule } from '@angular/material/input';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { environment } from '../environments/environment';
 
 //Components//
 import { AppComponent } from './app.component';
@@ -26,6 +26,11 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { LoginComponent } from './login/login.component';
+
+//Services//
+import { AuthService } from 'src/app/__services/auth.service';
+import { AuthGuardService } from './__services/auth-guard.service';
+import { UserService } from './__services/user.service';
 
 @NgModule({
   declarations: [
@@ -47,12 +52,32 @@ import { LoginComponent } from './login/login.component';
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
-      { path: 'checkout', component: CheckoutComponent },
-      { path: 'my/orders', component: MyOrdersComponent },
-      { path: 'order-success', component: OrderSuccessComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'admin/products', component: AdminOrdersComponent },
-      { path: 'admin/orders', component: AdminOrdersComponent }
+      {
+        path: 'checkout',
+        component: CheckoutComponent,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'my/orders',
+        component: MyOrdersComponent,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'order-success',
+        component: OrderSuccessComponent,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'admin/products',
+        component: AdminOrdersComponent,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'admin/orders',
+        component: AdminOrdersComponent,
+        canActivate: [AuthGuardService]
+      }
     ]),
     BrowserAnimationsModule,
     MatMenuModule,
@@ -64,7 +89,7 @@ import { LoginComponent } from './login/login.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuardService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
