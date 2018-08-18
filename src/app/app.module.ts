@@ -1,4 +1,3 @@
-
 import { environment } from '../environments/environment';
 
 //Modules//
@@ -32,6 +31,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from 'src/app/__services/auth.service';
 import { AuthGuardService } from './__services/auth-guard.service';
 import { UserService } from './__services/user.service';
+import { AdminAuthGuardService } from './__services/admin-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -72,12 +72,12 @@ import { UserService } from './__services/user.service';
       {
         path: 'admin/products',
         component: AdminOrdersComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, AdminAuthGuardService]
       },
       {
         path: 'admin/orders',
         component: AdminOrdersComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, AdminAuthGuardService]
       }
     ]),
     BrowserAnimationsModule,
@@ -90,7 +90,12 @@ import { UserService } from './__services/user.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [AuthService, AuthGuardService, UserService],
+  providers: [
+    AuthService,
+    AuthGuardService,
+    AdminAuthGuardService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
