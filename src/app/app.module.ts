@@ -17,7 +17,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 //Components//
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-<<<<<<< HEAD
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
@@ -91,19 +90,6 @@ import { UserService } from './__services/user.service';
     AngularFireAuthModule
   ],
   providers: [AuthService, AuthGuardService, UserService],
-=======
-import { AngularFireModule } from 'angularfire2';
-import { environment } from './../environments/environment';
-
-@NgModule({
-  declarations: [AppComponent, NavbarComponent],
-  imports: [
-    BrowserModule,
-    RouterModule,
-    AngularFireModule.initializeApp(environment.firebase)
-  ],
-  providers: [],
->>>>>>> set up firebase and package
   bootstrap: [AppComponent]
 })
 export class AppModule {}
