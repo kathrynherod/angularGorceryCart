@@ -1,23 +1,5 @@
-<<<<<<< HEAD
-/* @import '~bootstrap/dist/css/bootstrap.css'; */
-
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light');
 body {
   margin: 0;
 }
-=======
-<<<<<<< HEAD
-=======
-/* @import '~bootstrap/dist/css/bootstrap.css'; */
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-<<<<<<< HEAD
->>>>>>> 289a2c5... routes added
-=======
-@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light');
-
-body {
-  margin: 0;
-}
->>>>>>> a6fbfe9... firebase added
->>>>>>> adding route protecting for admin links (+8 squashed commits)
